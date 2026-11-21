@@ -1,0 +1,2 @@
+path,recipe,seed,epoch,val_macro_f1,parameters,train_eval_seconds,cpu_export_seconds,csv_sha256
+/kaggle/working/parts-v2-full/final_1/submission.csv,gray_long,17,24,1.0,607976,55.25329776600006,70.41490177000003,bd330795da56d368f75877269eaa63928cb8bc5f97a389af13921fc0d1ea6b2c

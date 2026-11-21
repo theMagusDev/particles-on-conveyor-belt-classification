@@ -1,0 +1,16 @@
+name,architecture,parent,hypothesis,geometry,grayscale,invert,weighted,image_size,epochs,seed,lr,backbone_lr,cosine,amp,blur,contrast,trained_with_amp,parameters,best_epoch,val_macro_f1,seconds,class_weights,device,weights_source
+r2_control,shape_cnn,,,True,True,False,False,64,36,17,0.002,0.0002,True,True,False,False,True,607976,24,1.0,50.926088016999984,,Tesla T4,random
+r2_control,shape_cnn,,,True,True,False,False,64,36,27,0.002,0.0002,True,True,False,False,True,607976,22,1.0,50.38712854100004,,Tesla T4,random
+r2_control,shape_cnn,,,True,True,False,False,64,36,37,0.002,0.0002,True,True,False,False,True,607976,30,1.0,51.21383237400005,,Tesla T4,random
+r2_constant_lr,shape_cnn,r2_control,,True,True,False,False,64,36,17,0.002,0.0002,False,True,False,False,True,607976,34,1.0,50.65796770199995,,Tesla T4,random
+r2_constant_lr,shape_cnn,r2_control,,True,True,False,False,64,36,27,0.002,0.0002,False,True,False,False,True,607976,34,0.9979165219806931,49.70583812400014,,Tesla T4,random
+r2_constant_lr,shape_cnn,r2_control,,True,True,False,False,64,36,37,0.002,0.0002,False,True,False,False,True,607976,29,1.0,49.441776841999854,,Tesla T4,random
+r2_invert,shape_cnn,r2_control,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,607976,21,1.0,53.455071910000015,,Tesla T4,random
+r2_invert,shape_cnn,r2_control,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,607976,22,1.0,53.87377994399981,,Tesla T4,random
+r2_invert,shape_cnn,r2_control,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,607976,30,1.0,53.17091378000009,,Tesla T4,random
+r2_blur,shape_cnn,r2_control,,True,True,False,False,64,36,17,0.002,0.0002,True,True,True,False,True,607976,28,1.0,53.781058480999945,,Tesla T4,random
+r2_blur,shape_cnn,r2_control,,True,True,False,False,64,36,27,0.002,0.0002,True,True,True,False,True,607976,14,1.0,53.956588655999894,,Tesla T4,random
+r2_blur,shape_cnn,r2_control,,True,True,False,False,64,36,37,0.002,0.0002,True,True,True,False,True,607976,26,0.9979165219806931,53.473393490000035,,Tesla T4,random
+r2_contrast,shape_cnn,r2_control,,True,True,False,False,64,36,17,0.002,0.0002,True,True,False,True,True,607976,30,1.0,52.56456448699987,,Tesla T4,random
+r2_contrast,shape_cnn,r2_control,,True,True,False,False,64,36,27,0.002,0.0002,True,True,False,True,True,607976,22,0.9979165219806931,51.25793708099991,,Tesla T4,random
+r2_contrast,shape_cnn,r2_control,,True,True,False,False,64,36,37,0.002,0.0002,True,True,False,True,True,607976,29,1.0,50.41908625000019,,Tesla T4,random

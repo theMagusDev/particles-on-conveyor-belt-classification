@@ -1,0 +1,19 @@
+name,architecture,parent,hypothesis,geometry,grayscale,invert,weighted,image_size,epochs,seed,lr,backbone_lr,cosine,amp,blur,contrast,checkpoint_loss_tiebreak,trained_with_amp,parameters,best_epoch,val_macro_f1,val_loss,seconds,class_weights,device,weights_source
+r3_first,shape_cnn,,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,False,True,607976,21,1.0,0.010398255164424578,53.10135759799999,,Tesla T4,random
+r3_first,shape_cnn,,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,False,True,607976,22,1.0,0.006067198328673839,49.10295810800005,,Tesla T4,random
+r3_first,shape_cnn,,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,False,True,607976,30,1.0,0.007040447182953357,50.521152321000045,,Tesla T4,random
+r3_loss,shape_cnn,r3_first,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,True,607976,30,1.0,0.0023450398507217566,50.36266431399997,,Tesla T4,random
+r3_loss,shape_cnn,r3_first,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,True,607976,29,1.0,0.002875790217270454,49.59115704999999,,Tesla T4,random
+r3_loss,shape_cnn,r3_first,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,True,607976,34,1.0,0.004723889318605264,50.56850776500005,,Tesla T4,random
+r3_normalized,shape_normalized,r3_loss,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,True,607976,30,1.0,0.0012095877473863462,62.93787952599996,,Tesla T4,random
+r3_normalized,shape_normalized,r3_loss,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,True,607976,31,1.0,0.0011908285591440896,61.87958869299996,,Tesla T4,random
+r3_normalized,shape_normalized,r3_loss,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,True,607976,30,1.0,0.0009932674661589165,62.52316822099999,,Tesla T4,random
+r3_wide,shape_wide,r3_loss,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,True,2418632,26,1.0,0.003897178933645288,70.07920894699998,,Tesla T4,random
+r3_wide,shape_wide,r3_loss,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,True,2418632,35,1.0,0.005107502468551199,69.71419081900001,,Tesla T4,random
+r3_wide,shape_wide,r3_loss,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,True,2418632,35,1.0,0.00804423737184455,69.76543125299986,,Tesla T4,random
+r3_wide_aa,shape_wide_aa,r3_wide,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,True,2418632,35,1.0,0.0016963157977443188,75.54225963699992,,Tesla T4,random
+r3_wide_aa,shape_wide_aa,r3_wide,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,True,2418632,36,1.0,0.004626048899566134,75.42200006199982,,Tesla T4,random
+r3_wide_aa,shape_wide_aa,r3_wide,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,True,2418632,34,0.9979165219806931,0.009912106557749212,75.56371537300015,,Tesla T4,random
+r3_wide_aa_normalized,shape_wide_aa_normalized,r3_wide_aa,,True,True,True,False,64,36,17,0.002,0.0002,True,True,False,False,True,True,2418632,30,0.9979165219806931,0.011259221999595562,84.76205974799996,,Tesla T4,random
+r3_wide_aa_normalized,shape_wide_aa_normalized,r3_wide_aa,,True,True,True,False,64,36,27,0.002,0.0002,True,True,False,False,True,True,2418632,30,1.0,0.004016440703223149,84.67374682700006,,Tesla T4,random
+r3_wide_aa_normalized,shape_wide_aa_normalized,r3_wide_aa,,True,True,True,False,64,36,37,0.002,0.0002,True,True,False,False,True,True,2418632,34,1.0,0.002436150455226501,84.64591960999996,,Tesla T4,random

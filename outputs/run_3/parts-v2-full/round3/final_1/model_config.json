@@ -1,0 +1,6 @@
+{
+  "architecture": "shape_normalized",
+  "image_size": 64,
+  "grayscale": true,
+  "dataset_version": "parts-v2"
+}

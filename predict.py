@@ -51,30 +51,53 @@ class ResidualBlock(nn.Module):
         return torch.relu(x + self.conv(x))
 
 
+class BlurPool(nn.Module):
+    """Binomial low-pass filter before stride-two spatial subsampling."""
+
+    def __init__(self, channels):
+        super().__init__()
+        vector = torch.tensor([1., 2., 1.])
+        kernel = (vector[:, None] * vector[None, :]) / 16
+        self.register_buffer("kernel", kernel.expand(channels, 1, 3, 3).clone())
+        self.channels = channels
+
+    def forward(self, x):
+        return nn.functional.conv2d(x, self.kernel, stride=2, padding=1, groups=self.channels)
+
+
 class ShapeCNN(nn.Module):
     """Two convolutions before the first pool, with 2×2 spatial pooling at the end."""
 
-    def __init__(self):
+    def __init__(self, width=1, antialias=False):
         super().__init__()
+        c1, c2, c3, c4 = [channels * width for channels in (32, 48, 80, 128)]
+        def pool(channels):
+            if antialias:
+                return nn.Sequential(nn.MaxPool2d(2, stride=1), BlurPool(channels))
+            return nn.MaxPool2d(2)
+
         self.features = nn.Sequential(
-            conv_block(3, 32), conv_block(32, 32), nn.MaxPool2d(2),
-            conv_block(32, 48), ResidualBlock(48), nn.MaxPool2d(2),
-            conv_block(48, 80), ResidualBlock(80), nn.MaxPool2d(2),
-            conv_block(80, 128), ResidualBlock(128),
+            conv_block(3, c1), conv_block(c1, c1), pool(c1),
+            conv_block(c1, c2), ResidualBlock(c2), pool(c2),
+            conv_block(c2, c3), ResidualBlock(c3), pool(c3),
+            conv_block(c3, c4), ResidualBlock(c4),
         )
-        self.head = nn.Sequential(nn.Dropout(0.15), nn.Linear(128 * 4, 8))
+        self.channels = c4
+        self.head = nn.Sequential(nn.Dropout(0.15), nn.Linear(c4 * 4, 8))
 
     def forward(self, x):
         x = self.features(x)
-        x = x.reshape(x.shape[0], 128, 2, 4, 2, 4).mean(dim=(3, 5))
+        x = x.reshape(x.shape[0], self.channels, 2, 4, 2, 4).mean(dim=(3, 5))
         return self.head(x.flatten(1))
 
 
 def create_model(architecture, imagenet_state=None):
     if architecture in {"small", "late_pool"}:
         return SmallCNN(late_pool=architecture == "late_pool")
-    if architecture == "shape_cnn":
+    if architecture in {"shape_cnn", "shape_normalized"}:
         return ShapeCNN()
+    if architecture in {"shape_wide", "shape_wide_aa", "shape_wide_aa_normalized"}:
+        return ShapeCNN(width=2, antialias="_aa" in architecture)
     if architecture == "resnet18":
         from torchvision.models import resnet18
 
@@ -92,6 +115,10 @@ def image_to_tensor(image, architecture, image_size, grayscale=False):
     if image.size != (image_size, image_size):
         image = image.resize((image_size, image_size), Image.Resampling.BILINEAR)
     x = torch.from_numpy(np.array(image)).permute(2, 0, 1).float().div_(255)
+    if architecture.endswith("_normalized"):
+        # Per-image statistics, equally applied to train, validation and test.
+        centered = x - x.mean()
+        return centered / centered.square().mean().sqrt().clamp_min(0.05)
     if architecture == "resnet18":
         mean = x.new_tensor([0.485, 0.456, 0.406])[:, None, None]
         std = x.new_tensor([0.229, 0.224, 0.225])[:, None, None]

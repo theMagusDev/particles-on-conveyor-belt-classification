@@ -1,0 +1,15 @@
+name,architecture,parent,hypothesis,geometry,grayscale,invert,weighted,image_size,epochs,seed,lr,backbone_lr,cosine,amp,trained_with_amp,parameters,best_epoch,val_macro_f1,seconds,class_weights,device,weights_source
+baseline,small,,Контрольный запуск SmallCNN,False,False,False,False,64,12,17,0.002,0.0002,False,False,False,24104,3,0.4826199335087154,10.218824173999963,,Tesla T4,random
+late_pool,late_pool,baseline,Отложить первый pooling до второй Conv,False,False,False,False,64,12,17,0.002,0.0002,False,False,False,24104,10,0.48021861841161567,4.168522471000017,,Tesla T4,random
+shape,shape_cnn,late_pool,Остаточная CNN с пространственной головой,False,False,False,False,64,12,17,0.002,0.0002,False,False,False,607976,12,0.5814832231948914,13.290492174000008,,Tesla T4,random
+geometry,shape_cnn,shape,Устойчивость к положению детали,True,False,False,False,64,12,17,0.002,0.0002,False,False,False,607976,12,0.6698753026928299,13.339326012000015,,Tesla T4,random
+gray,shape_cnn,geometry,Устойчивость к оттенку фона,True,True,False,False,64,12,17,0.002,0.0002,False,False,False,607976,6,0.9749998553140264,13.88888302800001,,Tesla T4,random
+polarity,shape_cnn,gray,Устойчивость к полярности контраста,True,True,True,False,64,12,17,0.002,0.0002,False,False,False,607976,12,0.9794751790872803,15.172701984000014,,Tesla T4,random
+balanced,shape_cnn,gray,Больше вклад редких классов в loss,True,True,False,True,64,12,17,0.002,0.0002,False,False,False,607976,12,0.9288473825272716,14.195202152000036,"[0.7066587209701538, 0.7448837161064148, 0.8159792423248291, 0.91229248046875, 0.9993663430213928, 1.1173255443572998, 1.2901763916015625, 1.4133174419403076]",Tesla T4,random
+polarity,shape_cnn,gray,Устойчивость к полярности контраста,True,True,True,False,64,12,27,0.002,0.0002,False,False,False,607976,5,0.966789775511957,15.459807836000039,,Tesla T4,random
+polarity_long,shape_cnn,polarity,Длинный бюджет с cosine LR и CUDA AMP,True,True,True,False,64,36,17,0.002,0.0002,True,True,True,607976,21,1.0,53.45165766299999,,Tesla T4,random
+polarity_long,shape_cnn,polarity,Длинный бюджет с cosine LR и CUDA AMP,True,True,True,False,64,36,27,0.002,0.0002,True,True,True,607976,22,1.0,52.21454229900007,,Tesla T4,random
+gray_long,shape_cnn,gray,Длинный бюджет с cosine LR и CUDA AMP,True,True,False,False,64,36,17,0.002,0.0002,True,True,True,607976,24,1.0,47.980646548000095,,Tesla T4,random
+gray_long,shape_cnn,gray,Длинный бюджет с cosine LR и CUDA AMP,True,True,False,False,64,36,27,0.002,0.0002,True,True,True,607976,22,1.0,47.87867255399999,,Tesla T4,random
+resnet18,resnet18,polarity,Разрешённое ImageNet-предобучение и дообучение всей ResNet18,True,True,True,False,128,36,17,0.001,0.0001,True,True,True,11180616,25,1.0,107.09199308500001,,Tesla T4,torchvision ResNet18_Weights.IMAGENET1K_V1
+resnet18,resnet18,polarity,Разрешённое ImageNet-предобучение и дообучение всей ResNet18,True,True,True,False,128,36,27,0.001,0.0001,True,True,True,11180616,9,1.0,106.81739474799997,,Tesla T4,torchvision ResNet18_Weights.IMAGENET1K_V1

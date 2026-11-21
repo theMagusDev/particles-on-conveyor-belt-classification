@@ -1,0 +1,3 @@
+path,recipe,seed,epoch,val_macro_f1,parameters,train_eval_seconds,cpu_export_seconds,csv_sha256
+/kaggle/working/parts-v2-full/round3/final_1/submission.csv,r3_normalized,17,30,1.0,607976,62.93787952599996,53.70231712300006,012d8a09bed8858a470382adc0db3b30d618300be83939a467b1a563f3e91c05
+/kaggle/working/parts-v2-full/round3/final_2/submission.csv,r3_first,17,21,1.0,607976,53.10135759799999,5.073031518999869,98972e5ec0e85d2391c99a46237b1b65d70dd7903af2543a29047e3a6cac35b9
