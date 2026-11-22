@@ -1,6 +1,6 @@
 # r2_invert · parts-v2
 
-Seed 17, 36 эпох. Выбранная эпоха — 21, validation Macro-F1 — 1.000000.
+Seed 17. Обучение длилось 36 эпох. Checkpoint эпохи 21, Macro-F1 на validation — 1.000000.
 
 - [Настройки и метрики](metrics.json)
 - [История обучения](history.csv)

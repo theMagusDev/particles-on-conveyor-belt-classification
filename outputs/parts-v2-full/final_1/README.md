@@ -1,6 +1,6 @@
 # gray_long · parts-v2
 
-Seed 17, 36 эпох. Выбранная эпоха — 24, validation Macro-F1 — 1.000000.
+Seed 17. Обучение длилось 36 эпох. Checkpoint эпохи 24, Macro-F1 на validation — 1.000000.
 
 - [Настройки и метрики](metrics.json)
 - [История обучения](history.csv)
